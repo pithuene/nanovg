@@ -27,20 +27,17 @@ extern "C" {
 
 #ifdef _MSC_VER
 #pragma warning(push)
-#pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
 #endif
 
 typedef struct NVGcontext NVGcontext;
 
-struct NVGcolor {
-	union {
-		float rgba[4];
-		struct {
-			float r,g,b,a;
-		};
-	};
+union NVGcolor {
+  float rgba_arr[4];
+  struct {
+    float r,g,b,a;
+  } rgba;
 };
-typedef struct NVGcolor NVGcolor;
+typedef union NVGcolor NVGcolor;
 
 struct NVGpaint {
 	float xform[6];

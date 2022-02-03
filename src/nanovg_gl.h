@@ -191,8 +191,8 @@ struct GLNVGfragUniforms {
 	#if NANOVG_GL_USE_UNIFORMBUFFER
 		float scissorMat[12]; // matrices are actually 3 vec4s
 		float paintMat[12];
-		struct NVGcolor innerCol;
-		struct NVGcolor outerCol;
+		union NVGcolor innerCol;
+		union NVGcolor outerCol;
 		float scissorExt[2];
 		float scissorScale[2];
 		float extent[2];
@@ -210,8 +210,8 @@ struct GLNVGfragUniforms {
 			struct {
 				float scissorMat[12]; // matrices are actually 3 vec4s
 				float paintMat[12];
-				struct NVGcolor innerCol;
-				struct NVGcolor outerCol;
+				union NVGcolor innerCol;
+				union NVGcolor outerCol;
 				float scissorExt[2];
 				float scissorScale[2];
 				float extent[2];
@@ -900,9 +900,9 @@ static void glnvg__xformToMat3x4(float* m3, float* t)
 
 static NVGcolor glnvg__premulColor(NVGcolor c)
 {
-	c.r *= c.a;
-	c.g *= c.a;
-	c.b *= c.a;
+	c.rgba.r *= c.rgba.a;
+	c.rgba.g *= c.rgba.a;
+	c.rgba.b *= c.rgba.a;
 	return c;
 }
 

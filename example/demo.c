@@ -32,7 +32,7 @@ static float clampf(float a, float mn, float mx) { return a < mn ? mn : (a > mx 
 // Returns 1 if col.rgba is 0.0f,0.0f,0.0f,0.0f, 0 otherwise
 int isBlack(NVGcolor col)
 {
-	if( col.r == 0.0f && col.g == 0.0f && col.b == 0.0f && col.a == 0.0f )
+	if( col.rgba.r == 0.0f && col.rgba.g == 0.0f && col.rgba.b == 0.0f && col.rgba.a == 0.0f )
 	{
 		return 1;
 	}
